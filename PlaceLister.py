@@ -13,17 +13,19 @@
 # Make it so that you can enter multiple input and like maybe you can tell the user to seperate it with something so that the program reads each seperator as a stop and interprets the next string as a new todo.
 # Make it so that when the user inputs addthings, if the todo/thing is already there just update the quantity instead of creating a new one.
 # Make like a back/reverse input. E.g. when you accidentally input addplace but you wanted to input display, you should be able to input in something so it goes back to asking you on what to do.
-# Make a repository and try out git/GitHub commands and decide on the repository license.
 # Add a back input when you put ask then its goes to where are you going because it keeps on asking where are you going if the place isn't listed.
+# Make it ask if you want to display the current list, add a new place, add new things to buy/do list, ask for the place to display your to do.
 
 
 import pprint
 dict_places_do = {"Mcdonalds": "2 Coke Floats (Large)", "Mercury Drug": "4 tablets of Paracetamol"}
 
+#exit_var = None
+
 while True:
-    answer_decide = input(
-        "What do you want to do? (display, addplace, addthings, or ask) (or exit to exit): ")
+    answer_decide = input("What do you want to do? (display, addplace, addthings, or ask) (or exit to exit): ")
     if answer_decide == "exit":
+        #exit_var == answer_decide
         break
         # Make this line as a code to make the whole program exit if the input is "exit".
     elif answer_decide == "display":
@@ -32,8 +34,7 @@ while True:
         add_place = input("What is the name of the place?: ")
         dict_places_do[add_place] = None
     elif answer_decide == "addthings":
-        add_things1 = input(
-            "What is the name of the place you're adding new todos?: ")
+        add_things1 = input("What is the name of the place you're adding new todos?: ")
         add_things2 = input("What is the new todo you want to add?: ")
         dict_places_do[add_things1] = add_things2
     elif answer_decide == "ask":
@@ -42,12 +43,15 @@ while True:
 
 # Asks for the place you're going.
 while True:
-    answer = input("Where are you going? (input \"exit\" to exit.): ")
-    if answer == "exit":
+    if answer_decide == "exit":
         break
-    elif answer in dict_places_do:
-        print("Here's what you need to do there: " + dict_places_do[answer])
     else:
-        print("That place isn't listed.")
+        answer = input("Where are you going? (input \"exit\" to exit.): ")
+        if answer == "exit":
+            break
+        elif answer in dict_places_do:
+            print("Here's what you need to do there: " + dict_places_do[answer])
+        else:
+            print("That place isn't listed.")
 
-# Make it ask if you want to display the current list, add a new place, add new things to buy/do list, ask for the place to display your to do.
+
