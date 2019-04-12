@@ -18,23 +18,23 @@
 
 
 import pprint
-dict_places_do = {"Mcdonalds": "2 Coke Floats (Large)", "Mercury Drug": "4 tablets of Paracetamol"}
+dict_places_do = {
+    "Mcdonalds": "2 Coke Floats (Large)", "Mercury Drug": "4 tablets of Paracetamol"}
 
-#exit_var = None
-
+# Asks on what you want to do.
 while True:
-    answer_decide = input("What do you want to do? (display, addplace, addthings, or ask) (or exit to exit): ")
+    answer_decide = input(
+        "What do you want to do? (display, addplace, addthings, or ask) (or exit to exit): ")
     if answer_decide == "exit":
-        #exit_var == answer_decide
         break
-        # Make this line as a code to make the whole program exit if the input is "exit".
     elif answer_decide == "display":
         pprint.pprint(dict_places_do)
     elif answer_decide == "addplace":
         add_place = input("What is the name of the place?: ")
         dict_places_do[add_place] = None
     elif answer_decide == "addthings":
-        add_things1 = input("What is the name of the place you're adding new todos?: ")
+        add_things1 = input(
+            "What is the name of the place you're adding new todos?: ")
         add_things2 = input("What is the new todo you want to add?: ")
         dict_places_do[add_things1] = add_things2
     elif answer_decide == "ask":
@@ -50,8 +50,7 @@ while True:
         if answer == "exit":
             break
         elif answer in dict_places_do:
-            print("Here's what you need to do there: " + dict_places_do[answer])
+            print("Here's what you need to do there: " +
+                  dict_places_do[answer])
         else:
             print("That place isn't listed.")
-
-
