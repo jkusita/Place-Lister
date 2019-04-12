@@ -4,8 +4,7 @@
 # Make comment per each piece of code
 
 # TO DO:
-# 1. Make it ask if you want to display the list.
-# 2. Make the output pp.ppformat style and equal indentation/column width.
+# 2. Make the output equal indentation/column width.
 # 3. In the dictionary display an ordered number that numbers the items in each place so later the user can just put the number with the todo thing in an input that asks for the number to delete that thing off the place list.
 # Use setdefault() so when you ask the person if he wants to addplace and puts an existing place it will overwite that place and not create a new place instead.
 # Remove brackets when printing dictionary.
@@ -15,11 +14,11 @@
 # Make it so that when the user inputs addthings, if the todo/thing is already there just update the quantity instead of creating a new one.
 # Make like a back/reverse input. E.g. when you accidentally input addplace but you wanted to input display, you should be able to input in something so it goes back to asking you on what to do.
 # Make a repository and try out git/GitHub commands and decide on the repository license.
+# Add a back input when you put ask then its goes to where are you going because it keeps on asking where are you going if the place isn't listed.
+
 
 import pprint
-
-dict_places_do = {
-    "Mcdonalds": "2 Coke Floats (Large)", "Mercury Drug": "4 tablets of Paracetamol"}
+dict_places_do = {"Mcdonalds": "2 Coke Floats (Large)", "Mercury Drug": "4 tablets of Paracetamol"}
 
 while True:
     answer_decide = input(
@@ -37,6 +36,8 @@ while True:
             "What is the name of the place you're adding new todos?: ")
         add_things2 = input("What is the new todo you want to add?: ")
         dict_places_do[add_things1] = add_things2
+    elif answer_decide == "ask":
+        break
 
 
 # Asks for the place you're going.
