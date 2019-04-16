@@ -43,10 +43,12 @@ def main_menu(main_menu_input):
         else:
             addexisting_todo = input("What are you adding?: ")
             dict_places_do[addexisting_place] = addexisting_todo
+            print("Successfully added")
     elif main_menu_input == "addtodo":
         addthings_place = input("What is the name of the place you're adding new todos?: ")
         addthings_todo = input("What is the new todo you want to add (you can choose to add nothing)?: ") # You can choose to remove the text inside the parantheses if you want.
         dict_places_do[addthings_place] = addthings_todo  
+        print("Succesfully created and added.")
     elif main_menu_input == "ask":
         pass
     return main_menu_input
