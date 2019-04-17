@@ -62,7 +62,7 @@ while True:
 while True:
     if main_menu_return == "exit":
         break
-    else:
+    while True:
         answer = input("Where are you going? (input \"exit\" to exit.): ")
         if answer == "exit":
             break
@@ -70,3 +70,5 @@ while True:
             print("\nHere's what you need to do there:\n " + dict_places_do[answer] + "\n")
         else:
             print("That place isn't listed.")
+    break
+    
