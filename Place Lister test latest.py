@@ -8,7 +8,7 @@
 # 3. In the dictionary display an ordered number that numbers the items in each place so later the user can just put the number with the todo thing in an input that asks for the number to delete that thing off the place list.
 # Remove brackets when printing dictionary.
 # Make the code into functions to make it cleaner?
-# Make it so you can delete todos/things. ######################
+# Make it so you can delete todos/things. ###################### 1. Delete an existing place. 2. Delete existing todos.
 # Make it so that you can enter multiple input and like maybe you can tell the user to seperate it with something so that the program reads each seperator as a stop and interprets the next string as a new todo.
 # Make it so that when the user inputs addtodo, if the todo/thing is already there just update the quantity instead of creating a new one.
 # Make like a back/reverse input. E.g. when you accidentally input addplace but you wanted to input display, you should be able to input in something so it goes back to asking you on what to do.
@@ -31,7 +31,7 @@
 
 import pprint
 
-dict_places_do = {"Mcdonalds": ["2 Coke Floats (Large)", "5 Large Fries", "10 Chocolate Sundaes", "Ketchup", "7 Cheeseburgers"], "Mercury Drug": ["4 tablets of Paracetamol"]} #
+dict_main = {"Mcdonalds": ["2 Coke Floats (Large)", "5 Large Fries", "10 Chocolate Sundaes", "Ketchup", "7 Cheeseburgers"], "Mercury Drug": ["4 tablets of Paracetamol"]} #
 
 # Main menu function that asks what you want to do
 def main_menu(main_menu_input):
@@ -39,30 +39,53 @@ def main_menu(main_menu_input):
         pass    
     elif main_menu_input == "display":  # If input is "display"
         print("")
-        pprint.pprint(dict_places_do)   
+        pprint.pprint(dict_main)   
     elif main_menu_input == "addexisting": # If input is "addexisting"
         addexisting_place = input("What is the name of the place you're adding to?: ")
-        if addexisting_place not in dict_places_do: 
+        if addexisting_place not in dict_main: 
             print("That place isn't listed.")
         else:
             addexisting_todo = input("What are you adding?: ")  
-            dict_places_do[addexisting_place].append(addexisting_todo) 
+            dict_main[addexisting_place].append(addexisting_todo) 
             print("Successfully added")
     elif main_menu_input == "addtodo": # If input is "addtodo"
         addthings_place = input("What is the name of the place you're adding new todos?: ")
         addthings_todo = input("What is the new todo you want to add (you can choose to add nothing by entering nothing)?: ") 
-        if addthings_place in dict_places_do:
-            dict_places_do[addthings_place].append(addthings_todo)
+        if addthings_place in dict_main:
+            dict_main[addthings_place].append(addthings_todo)
         else:
-            dict_places_do[addthings_place] = []
-            dict_places_do[addthings_place].append(addthings_todo)  
+            dict_main[addthings_place] = []
+            dict_main[addthings_place].append(addthings_todo)  
         print("Succesfully created and added.")
     elif main_menu_input == "ask": # If input is "ask"
         pass
+    elif main_menu_input = "del": # If input is "del"
+        del_answer = input("What do you want to del (place or todo)?: ")
+        if del_answer == "place":
+            del_place = input("What is the name of the place (this will remove all existing lists associated with that place)?: ")
+            if del_place in dict_main:
+                dict_main.pop(delplace)
+            print("Succesfully deleted.") # You can change this later, it's your choice if you want the program to say that the place doesn't exist.
+        elif del_answer == "todo":
+            while True:
+                del_place2 = input("What is the name of the place?: ")
+                if del_place2 in dict_main:
+                    print("These is the place and the todos associated with it:\n")
+                    pprint.pprint(dict_main[delplaces2])
+                    print("")
+                    del_todo = input("What is the todo you want to delete?") # Can you make the list items have a number at the beginning so you can easily pick the number that you want to delete instead of picking out the whole phrase?
+                    dict_main[del_place2].remove(del_todo) # Check this del_answer == "todo" and put if and else stating that if it's in the main dictionary, say if it is or not avaiable then go back to the loop or break if it is available and printout "Success!"
+
+        
+        elif == "exit":
+
+        else:
+            print("That place doesn't exist!")
+
     return main_menu_input
 
 while True:     
-    main_menu_return = main_menu(input("\nWhat do you want to do? (display, addtodo, addexisting, or ask) (or \"exit\" to exit): "))
+    main_menu_return = main_menu(input("\nWhat do you want to do? (display, addtodo, addexisting, del, or ask) (or \"exit\" to exit): "))
     if main_menu_return == "exit" or main_menu_return == "ask":
         break
 
@@ -74,9 +97,9 @@ while True:
         answer = input("Where are you going? (input \"exit\" to exit.): ")
         if answer == "exit":
             break
-        elif answer in dict_places_do:   
+        elif answer in dict_main:   
             print("\nHere's what you need to do there:\n")
-            pprint.pprint(dict_places_do[answer])
+            pprint.pprint(dict_main[answer])
             print("")
         else:
             print("That place isn't listed.")
