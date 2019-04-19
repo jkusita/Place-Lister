@@ -27,10 +27,12 @@
 
 # Current: You can't add more than one value to a key in a dictionary, find a way to make the user add multiple values to one key.
 # Left off - Line 54: When addtodo a new a place, since you make it equal to [], it clears the previous todos in it. Find a way brah!
+# When you choose addtodo option, you should be able to have the choice to exit if you don't wan tot add a new one or existing.
+# Make it so you can delete of the list.
 
 import pprint
 # prototyped: dict_places_do = {"Mcdonalds": "2 Coke Floats (Large)", "Mercury Drug": "4 tablets of Paracetamol"} 
-dict_places_do = {"Mcdonalds": ["2 Coke Floats (Large)"], "Mercury Drug": ["4 tablets of Paracetamol"]} #
+dict_places_do = {"Mcdonalds": ["2 Coke Floats (Large)", "5 Large Fries", "10 Chocolate Sundaes", "Ketchup", "7 Cheeseburgers"], "Mercury Drug": ["4 tablets of Paracetamol"]} #
 
 # Main menu function that asks what you want to do
 def main_menu(main_menu_input):
@@ -73,7 +75,10 @@ while True:
         if answer == "exit":
             break
         elif answer in dict_places_do:  
-            print("\nHere's what you need to do there:\n " + dict_places_do[answer] + "\n") 
+            # print("\nHere's what you need to do there:\n " + str(dict_places_do[answer]) + "\n") 
+            print("\nHere's what you need to do there:\n")
+            pprint.pprint(dict_places_do[answer])
+            print("")
         else:
             print("That place isn't listed.")
     break
