@@ -6,10 +6,9 @@
 # TO DO:
 # 2. Make the output equal indentation/column width.
 # 3. In the dictionary display an ordered number that numbers the items in each place so later the user can just put the number with the todo thing in an input that asks for the number to delete that thing off the place list.
-# Use setdefault() so when you ask the person if he wants to addplace and puts an existing place it will overwite that place and not create a new place instead.
 # Remove brackets when printing dictionary.
 # Make the code into functions to make it cleaner?
-# Make it so you can delete todos/things.
+# Make it so you can delete todos/things. ######################
 # Make it so that you can enter multiple input and like maybe you can tell the user to seperate it with something so that the program reads each seperator as a stop and interprets the next string as a new todo.
 # Make it so that when the user inputs addtodo, if the todo/thing is already there just update the quantity instead of creating a new one.
 # Make like a back/reverse input. E.g. when you accidentally input addplace but you wanted to input display, you should be able to input in something so it goes back to asking you on what to do.
@@ -27,35 +26,38 @@
 
 # Current: You can't add more than one value to a key in a dictionary, find a way to make the user add multiple values to one key.
 # Left off - Line 54: When addtodo a new a place, since you make it equal to [], it clears the previous todos in it. Find a way brah!
+# When you choose addtodo option, you should be able to have the choice to exit if you don't wan tot add a new one or existing.
+# Make it so you can delete of the list.
 
 import pprint
-# prototyped: dict_places_do = {"Mcdonalds": "2 Coke Floats (Large)", "Mercury Drug": "4 tablets of Paracetamol"} 
-dict_places_do = {"Mcdonalds": ["2 Coke Floats (Large)"], "Mercury Drug": ["4 tablets of Paracetamol"]} #
+
+dict_places_do = {"Mcdonalds": ["2 Coke Floats (Large)", "5 Large Fries", "10 Chocolate Sundaes", "Ketchup", "7 Cheeseburgers"], "Mercury Drug": ["4 tablets of Paracetamol"]} #
 
 # Main menu function that asks what you want to do
 def main_menu(main_menu_input):
-    if main_menu_input == "exit":
+    if main_menu_input == "exit": # If input is "exit"
         pass    
-    elif main_menu_input == "display": 
+    elif main_menu_input == "display":  # If input is "display"
         print("")
-        pprint.pprint(dict_places_do)   # 
-    elif main_menu_input == "addexisting":
+        pprint.pprint(dict_places_do)   
+    elif main_menu_input == "addexisting": # If input is "addexisting"
         addexisting_place = input("What is the name of the place you're adding to?: ")
-        if addexisting_place not in dict_places_do: #
+        if addexisting_place not in dict_places_do: 
             print("That place isn't listed.")
         else:
-            addexisting_todo = input("What are you adding?: ") 
-            # Prototyped: dict_places_do[addexisting_place] = addexisting_todo 
-            dict_places_do[addexisting_place].append(addexisting_todo) #
+            addexisting_todo = input("What are you adding?: ")  
+            dict_places_do[addexisting_place].append(addexisting_todo) 
             print("Successfully added")
-    elif main_menu_input == "addtodo":
+    elif main_menu_input == "addtodo": # If input is "addtodo"
         addthings_place = input("What is the name of the place you're adding new todos?: ")
-        addthings_todo = input("What is the new todo you want to add (you can choose to add nothing)?: ") # You can choose to remove the text inside the parantheses in the string if you want.
-        # Prototypd: dict_places_do[addthings_place] = addthings_todo
-        dict_places_do[addthings_place] = [] # Can't append if the dictionary key doesn't exist.
-        dict_places_do[addthings_place].append(addthings_todo)   #
+        addthings_todo = input("What is the new todo you want to add (you can choose to add nothing by entering nothing)?: ") 
+        if addthings_place in dict_places_do:
+            dict_places_do[addthings_place].append(addthings_todo)
+        else:
+            dict_places_do[addthings_place] = []
+            dict_places_do[addthings_place].append(addthings_todo)  
         print("Succesfully created and added.")
-    elif main_menu_input == "ask":
+    elif main_menu_input == "ask": # If input is "ask"
         pass
     return main_menu_input
 
@@ -72,8 +74,10 @@ while True:
         answer = input("Where are you going? (input \"exit\" to exit.): ")
         if answer == "exit":
             break
-        elif answer in dict_places_do:  
-            print("\nHere's what you need to do there:\n " + dict_places_do[answer] + "\n") 
+        elif answer in dict_places_do:   
+            print("\nHere's what you need to do there:\n")
+            pprint.pprint(dict_places_do[answer])
+            print("")
         else:
             print("That place isn't listed.")
     break
