@@ -13,7 +13,6 @@
 # Make it so that when the user inputs addtodo, if the todo/thing is already there just update the quantity instead of creating a new one.
 # Make like a back/reverse input. E.g. when you accidentally input addplace but you wanted to input display, you should be able to input in something so it goes back to asking you on what to do.
 # Add a back input when you put ask then its goes to where are you going because it keeps on asking where are you going if the place isn't listed.
-# Make it ask if you want to display the current list, add a new place, add new things to buy/do list, ask for the place to display your to do.
 # Empty the dictionary later on, the key-value pairs are just there for testing purposes.
 # Add a way to delete items and/or places.
 # Add a way to dlete or "check off" items that have been done. 
@@ -28,6 +27,7 @@
 # Left off - Line 54: When addtodo a new a place, since you make it equal to [], it clears the previous todos in it. Find a way brah!
 # When you choose addtodo option, you should be able to have the choice to exit if you don't wan tot add a new one or existing.
 # Make it so you can delete of the list.
+# Make an option to display the current places or lists if they want/put an input when deleting places and/or todos so they can see what exists if they forget the things they want to delete.
 
 import pprint
 
@@ -35,8 +35,8 @@ dict_main = {"Mcdonalds": ["2 Coke Floats (Large)", "5 Large Fries", "10 Chocola
 
 # Main menu function that asks what you want to do
 def main_menu(main_menu_input):
-    if main_menu_input == "exit": # If input is "exit"
-        pass    
+    if main_menu_input == "exit": # If input is "exit", not yet implemented.
+        return main_menu_input    
     elif main_menu_input == "display":  # If input is "display"
         print("")
         pprint.pprint(dict_main)   
@@ -54,42 +54,43 @@ def main_menu(main_menu_input):
         if addthings_place in dict_main:
             dict_main[addthings_place].append(addthings_todo)
         else:
-            dict_main[addthings_place] = []
+            dict_main[addthings_place] = ""
             dict_main[addthings_place].append(addthings_todo)  
         print("Succesfully created and added.")
     elif main_menu_input == "ask": # If input is "ask"
         pass
-    elif main_menu_input = "del": # If input is "del"
+    elif main_menu_input == "del": # If input is "del"
         del_answer = input("What do you want to del (place or todo)?: ")
         if del_answer == "place":
             del_place = input("What is the name of the place (this will remove all existing lists associated with that place)?: ")
             if del_place in dict_main:
-                dict_main.pop(delplace)
-            print("Succesfully deleted.") # You can change this later, it's your choice if you want the program to say that the place doesn't exist.
+                dict_main.pop(del_place)
+                print("Succesfully deleted.") # You can change this later, it's your choice if you want the program to say that the place doesn't exist
+            else:
+                print("That place doesn't exist.")
         elif del_answer == "todo":
             while True:
                 del_place2 = input("What is the name of the place?: ")
                 if del_place2 in dict_main:
                     print("These is the place and the todos associated with it:\n")
-                    pprint.pprint(dict_main[delplaces2])
+                    pprint.pprint(dict_main[del_place2])
                     print("")
-                    del_todo = input("What is the todo you want to delete?") # Can you make the list items have a number at the beginning so you can easily pick the number that you want to delete instead of picking out the whole phrase?
-                    dict_main[del_place2].remove(del_todo) # Check this del_answer == "todo" and put if and else stating that if it's in the main dictionary, say if it is or not avaiable then go back to the loop or break if it is available and printout "Success!"
-
-        
-        elif == "exit":
-
-        else:
-            print("That place doesn't exist!")
-
-    return main_menu_input
+                    del_todo = input("What is the todo you want to delete?: ") # Can you make the list items have a number at the beginning so you can easily pick the number that you want to delete instead of picking out the whole phrase? My response: I think  you can do this by making something like sublists but the main list is numbers and put the list message as a sublist of that main list number e.g. [1]["Buy 2 Fries"], [2]["Buy 5 Burgers"]
+                    if del_todo in dict_main[del_place2]:
+                        dict_main[del_place2].remove(del_todo) # Check this del_answer == "todo" and put if and else stating that if it's in the main dictionary, say if it is or not avaiable then go back to the loop or break if it is available and printout "Success!"
+                        print("Success!")
+                    else:
+                        print("That todo doesn't exist.")
+                else:
+                    print("That place doesn't exist.")
+                break
 
 while True:     
-    main_menu_return = main_menu(input("\nWhat do you want to do? (display, addtodo, addexisting, del, or ask) (or \"exit\" to exit): "))
-    if main_menu_return == "exit" or main_menu_return == "ask":
+    main_menu_return = main_menu(input("\nWhat do you want to do? (display, addtodo, addexisting, del, ask, or exit: "))
+    if main_menu_return == "exit":
         break
 
-# Asks for the place you're going. (Make this a function)
+# Asks for the place you're going. (Make this a function)t
 while True:
     if main_menu_return == "exit":
         break
