@@ -32,18 +32,18 @@
 
 import pprint
 
-dict_main = {"Mcdonalds": ["2 Coke Floats (Large)", "5 Large Fries", "10 Chocolate Sundaes", "Ketchup", "7 Cheeseburgers"], "Mercury Drug": ["4 tablets of Paracetamol"]} #
+dict_main = {"Mcdonalds": ["2 Coke Floats (Large)", "5 Large Fries", "10 Chocolate Sundaes", "Ketchup", "7 Cheeseburgers"], "Mercury Drug": ["4 tablets of Paracetamol"]}
 
 # Main menu function that asks what you want to do
 def main_menu(main_menu_input):
-    if main_menu_input == "exit": # If input is "exit", not yet implemented.
+    if main_menu_input == "exit": 
         return main_menu_input    
 
-    elif main_menu_input == "display":  # If input is "display"
+    elif main_menu_input == "display":  
         print("")
         pprint.pprint(dict_main)
 
-    elif main_menu_input == "addexisting": # If input is "addexisting"
+    elif main_menu_input == "addexisting": 
         addexisting_place = input("What is the name of the place you're adding to?: ")
         if addexisting_place not in dict_main: 
             print("That place isn't listed.")
@@ -52,7 +52,7 @@ def main_menu(main_menu_input):
             dict_main[addexisting_place].append(addexisting_todo) 
             print("Successfully added")
 
-    elif main_menu_input == "addtodo": # If input is "addtodo"
+    elif main_menu_input == "addtodo": 
         addthings_place = input("What is the name of the place you're adding new todos?: ")
         addthings_todo = input("What is the new todo you want to add (you can choose to add nothing by entering nothing)?: ") 
         if addthings_place in dict_main:
@@ -62,7 +62,7 @@ def main_menu(main_menu_input):
             dict_main[addthings_place].append(addthings_todo)  
         print("Succesfully created and added.")
 
-    elif main_menu_input == "del": # If input is "del"
+    elif main_menu_input == "del": 
         del_answer = input("What do you want to del (place or todo)?: ")
         if del_answer == "place":
             print("Places in list:")
@@ -71,7 +71,7 @@ def main_menu(main_menu_input):
             del_place = input("\nWhat is the name of the place (this will remove all existing lists associated with that place)?: ")
             if del_place in dict_main:
                 dict_main.pop(del_place)
-                print("Succesfully deleted.") # You can change this later, it's your choice if you want the program to say that the place doesn't exist
+                print("Succesfully deleted.") 
             else:
                 print("That place doesn't exist.")
         elif del_answer == "todo":
@@ -83,7 +83,7 @@ def main_menu(main_menu_input):
                     print("")
                     del_todo = input("What is the todo you want to delete?: ") # Can you make the list items have a number at the beginning so you can easily pick the number that you want to delete instead of picking out the whole phrase? My response: I think  you can do this by making something like sublists but the main list is numbers and put the list message as a sublist of that main list number e.g. [1]["Buy 2 Fries"], [2]["Buy 5 Burgers"]
                     if del_todo in dict_main[del_place2]:
-                        dict_main[del_place2].remove(del_todo) # Check this del_answer == "todo" and put if and else stating that if it's in the main dictionary, say if it is or not avaiable then go back to the loop or break if it is available and printout "Success!"
+                        dict_main[del_place2].remove(del_todo)
                         print("Success!")
                     else:
                         print("That todo doesn't exist.")
@@ -91,24 +91,18 @@ def main_menu(main_menu_input):
                     print("That place doesn't exist.")
                 break
 
-while True:     
-    main_menu_return = main_menu(input("\nWhat do you want to do? (display, addtodo, addexisting, del, or exit: "))
-    if main_menu_return == "exit":
-        break
-
-# Asks for the place you're going. (Make this a function)t
-while True:
-    if main_menu_return == "exit":
-        break
-    while True:
-        answer = input("Where are you going? (input \"exit\" to exit.): ")
-        if answer == "exit":
-            break
-        elif answer in dict_main:   
+    elif main_menu_input == "ask":
+        answer = input("Where are you going?: ")
+        if answer in dict_main:
             print("\nHere's what you need to do there:\n")
             pprint.pprint(dict_main[answer])
             print("")
         else:
             print("That place isn't listed.")
-    break
 
+
+# The main question. It asks for the main inputs.
+while True:     
+    main_menu_return = main_menu(input("\nWhat do you want to do? (display, addtodo, addexisting, del, ask, or exit: "))
+    if main_menu_return == "exit":
+        break
