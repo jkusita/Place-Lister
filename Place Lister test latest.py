@@ -23,12 +23,13 @@
 # I think dictionary displays values in alphabetical order, no matter the time/precedence you added it to the dictionary. Find a way to disable this and display it in order from oldest to the most recently added.
 # When inputting in the "What do you want to do?", make it display something if the user didn't input the keywords available/displayed. 
 
-# Current: You can't add more than one value to a key in a dictionary, find a way to make the user add multiple values to one key.
 # When you choose addtodo option, you should be able to have the choice to exit if you don't wan tot add a new one or existing.
 # Make an option to display the current places or lists if they want/put an input when deleting places and/or todos so they can see what exists if they forget the things they want to delete.
 #Find a way to save list because it discards the list after the program terminates.
 # Maybe add a lower on all inputs so it's not so sensitive to cases? (Response: I'll think about it.)
 # Make code pretty
+# Make a website or some gui that runs this code maybe?
+# Find out what is the different between addexisting and addtodo. If it's the same it's redundant, so delete one.
 
 import pprint
 
@@ -55,12 +56,14 @@ def main_menu(main_menu_input):
     elif main_menu_input == "addtodo": 
         addthings_place = input("What is the name of the place you're adding new todos?: ")
         addthings_todo = input("What is the new todo you want to add (you can choose to add nothing by entering nothing)?: ") 
-        if addthings_place in dict_main:
-            dict_main[addthings_place].append(addthings_todo)
+        if addthings_todo == "":
+            pass
         else:
-            dict_main[addthings_place] = ""
-            dict_main[addthings_place].append(addthings_todo)  
-        print("Succesfully created and added.")
+            dict_main[addthings_place].append(addthings_todo)
+            print("Succesfully created and added.")
+
+
+        
 
     elif main_menu_input == "del": 
         del_answer = input("What do you want to del (place or todo)?: ")
