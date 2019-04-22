@@ -28,6 +28,7 @@
 # Make an option to display the current places or lists if they want/put an input when deleting places and/or todos so they can see what exists if they forget the things they want to delete.
 #Find a way to save list because it discards the list after the program terminates.
 # Maybe add a lower on all inputs so it's not so sensitive to cases? (Response: I'll think about it.)
+# Make code pretty
 
 import pprint
 
@@ -37,9 +38,11 @@ dict_main = {"Mcdonalds": ["2 Coke Floats (Large)", "5 Large Fries", "10 Chocola
 def main_menu(main_menu_input):
     if main_menu_input == "exit": # If input is "exit", not yet implemented.
         return main_menu_input    
+
     elif main_menu_input == "display":  # If input is "display"
         print("")
-        pprint.pprint(dict_main)   
+        pprint.pprint(dict_main)
+
     elif main_menu_input == "addexisting": # If input is "addexisting"
         addexisting_place = input("What is the name of the place you're adding to?: ")
         if addexisting_place not in dict_main: 
@@ -48,6 +51,7 @@ def main_menu(main_menu_input):
             addexisting_todo = input("What are you adding?: ")  
             dict_main[addexisting_place].append(addexisting_todo) 
             print("Successfully added")
+
     elif main_menu_input == "addtodo": # If input is "addtodo"
         addthings_place = input("What is the name of the place you're adding new todos?: ")
         addthings_todo = input("What is the new todo you want to add (you can choose to add nothing by entering nothing)?: ") 
@@ -57,8 +61,7 @@ def main_menu(main_menu_input):
             dict_main[addthings_place] = ""
             dict_main[addthings_place].append(addthings_todo)  
         print("Succesfully created and added.")
-    elif main_menu_input == "ask": # If input is "ask"
-        pass
+
     elif main_menu_input == "del": # If input is "del"
         del_answer = input("What do you want to del (place or todo)?: ")
         if del_answer == "place":
@@ -89,7 +92,7 @@ def main_menu(main_menu_input):
                 break
 
 while True:     
-    main_menu_return = main_menu(input("\nWhat do you want to do? (display, addtodo, addexisting, del, ask, or exit: "))
+    main_menu_return = main_menu(input("\nWhat do you want to do? (display, addtodo, addexisting, del, or exit: "))
     if main_menu_return == "exit":
         break
 
