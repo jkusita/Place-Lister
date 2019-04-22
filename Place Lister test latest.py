@@ -24,10 +24,10 @@
 # When inputting in the "What do you want to do?", make it display something if the user didn't input the keywords available/displayed. 
 
 # Current: You can't add more than one value to a key in a dictionary, find a way to make the user add multiple values to one key.
-# Left off - Line 54: When addtodo a new a place, since you make it equal to [], it clears the previous todos in it. Find a way brah!
 # When you choose addtodo option, you should be able to have the choice to exit if you don't wan tot add a new one or existing.
-# Make it so you can delete of the list.
 # Make an option to display the current places or lists if they want/put an input when deleting places and/or todos so they can see what exists if they forget the things they want to delete.
+#Find a way to save list because it discards the list after the program terminates.
+# Maybe add a lower on all inputs so it's not so sensitive to cases? (Response: I'll think about it.)
 
 import pprint
 
@@ -62,7 +62,10 @@ def main_menu(main_menu_input):
     elif main_menu_input == "del": # If input is "del"
         del_answer = input("What do you want to del (place or todo)?: ")
         if del_answer == "place":
-            del_place = input("What is the name of the place (this will remove all existing lists associated with that place)?: ")
+            print("Places in list:")
+            for key in dict_main.keys():
+                print(key)        
+            del_place = input("\nWhat is the name of the place (this will remove all existing lists associated with that place)?: ")
             if del_place in dict_main:
                 dict_main.pop(del_place)
                 print("Succesfully deleted.") # You can change this later, it's your choice if you want the program to say that the place doesn't exist
