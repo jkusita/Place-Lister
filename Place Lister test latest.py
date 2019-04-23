@@ -1,3 +1,5 @@
+# Project Idea: make some kind of game like an rpg! Add a thing on the game like if the program asks you something and you reply make the program wait using the printing command while printing out .... (periods to make the user think the program is thinking/takinghis time.)
+
 
 # Program asks for a list and displays the things you need to do there.
 
@@ -30,6 +32,12 @@
 # Make code pretty
 # Make a website or some gui that runs this code maybe?
 # Find out what is the different between addexisting and addtodo. If it's the same it's redundant, so delete one.
+# Make like dividers like lines like this in top and the bottom of the command in out put using --------- or ********* for design!
+#Make an input that makes the user edit the names of the places like change BurgerKing to Burger King.
+# Make the program output out somethinglike ("That place already exists, I just updated it witt he new todos") when using the todo input choice.
+# Make the program output something if the choice isn't a parameter (or in some cases output something if it's a paramter to indicate that the command was succesful).
+# Find out new names for the input choices xD!
+
 
 import pprint
 
@@ -53,17 +61,20 @@ def main_menu(main_menu_input):
             dict_main[addexisting_place].append(addexisting_todo) 
             print("Successfully added")
 
-    elif main_menu_input == "addtodo": 
-        addthings_place = input("What is the name of the place you're adding new todos?: ")
+    elif main_menu_input == "newplaceandtodo": 
+        addthings_place = input("What is the name of the new place you're creating?: ")
         addthings_todo = input("What is the new todo you want to add (you can choose to add nothing by entering nothing)?: ") 
-        if addthings_todo == "":
-            pass
+        if addthings_place in dict_main:
+            if addthings_todo != "":
+                dict_main[addthings_place].append(addthings_todo)
         else:
-            dict_main[addthings_place].append(addthings_todo)
-            print("Succesfully created and added.")
+            dict_main[addthings_place] = [addthings_todo]    
+        print("Successfully created and added.")
 
-
-        
+        # if addthings_todo == "":
+        # else:
+        #     dict_main[addthings_place].append(addthings_todo)
+        #     print("Succesfully created and added.")
 
     elif main_menu_input == "del": 
         del_answer = input("What do you want to del (place or todo)?: ")
@@ -106,6 +117,6 @@ def main_menu(main_menu_input):
 
 # The main question. It asks for the main inputs.
 while True:     
-    main_menu_return = main_menu(input("\nWhat do you want to do? (display, addtodo, addexisting, del, ask, or exit: "))
+    main_menu_return = main_menu(input("\nWhat do you want to do? (display, newplaceandtodo, addexisting, del, ask, or exit: "))
     if main_menu_return == "exit":
         break
