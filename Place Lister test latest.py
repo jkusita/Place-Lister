@@ -1,22 +1,17 @@
 # Project Idea: make some kind of game like an rpg! Add a thing on the game like if the program asks you something and you reply make the program wait using the printing command while printing out .... (periods to make the user think the program is thinking/takinghis time.)
 
-
 # Program asks for a list and displays the things you need to do there.
 
 # Make comment per each piece of code
 
 # TO DO:
-# 2. Make the output equal indentation/column width.
 # 3. In the dictionary display an ordered number that numbers the items in each place so later the user can just put the number with the todo thing in an input that asks for the number to delete that thing off the place list.
-# Remove brackets when printing dictionary.
 # Make the code into functions to make it cleaner?
 # Make it so that you can enter multiple input and like maybe you can tell the user to seperate it with something so that the program reads each seperator as a stop and interprets the next string as a new todo.
-# Make it so that when the user inputs addtodo, if the todo/thing is already there just update the quantity instead of creating a new one.
 # Make like a back/reverse input. E.g. when you accidentally input addplace but you wanted to input display, you should be able to input in something so it goes back to asking you on what to do.
 # Add a back input when you put ask then its goes to where are you going because it keeps on asking where are you going if the place isn't listed.
 # Empty the dictionary later on, the key-value pairs are just there for testing purposes.
 # Add a way to delete items and/or places.
-# Make the list pretties when user calls displayinput choice and arrange it by alphabetical order. 
 
 # Remove add place, keep "add new place and new things (You can set it to None or something if you don't need to add anything to that new place)", and make a new "add existing things to existing place (put an try except that outputs "Place doesn't exist" if the place isn't listed)".
 # Add message confirmations after doing a function.
@@ -97,21 +92,17 @@ def main_menu(main_menu_input):
 
     elif main_menu_input == "newplaceandtodo": 
         addthings_place = input("What is the name of the new place you're creating?: ")
-        addthings_todo = input("What is the new todo you want to add (you can choose to add nothing by entering nothing)?: ")
-        if addthings_place != "":
-            if addthings_place in dict_main:
-                if addthings_todo != "":
-                    dict_main[addthings_place].append(addthings_todo)
-            else:
-                dict_main[addthings_place] = [addthings_todo]    
-            print("Successfully created and added.")
-        else:
+        if addthings_place == "":
             print("You didn't enter a name.")
-
-        # if addthings_todo == "":
-        # else:
-        #     dict_main[addthings_place].append(addthings_todo)
-        #     print("Succesfully created and added.")
+        else:
+            addthings_todo = input("What is the new todo you want to add (you can choose to add nothing by entering nothing)?: ")
+            if addthings_place != "":
+                if addthings_place in dict_main:
+                    if addthings_todo != "":
+                        dict_main[addthings_place].append(addthings_todo)
+                else:
+                    dict_main[addthings_place] = [addthings_todo]    
+                print("Successfully created and added.")
 
     elif main_menu_input == "del": 
         del_answer = input("What do you want to del (place or todo)?: ")
