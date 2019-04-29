@@ -42,16 +42,49 @@
 
 import pprint
 
+# Still implementing variables
+longest_key = 0
+longest_value = 0
+display_seperator = 3
+todo_longest_value = 0
+
+
 dict_main = {"Mcdonalds": ["2 Coke Floats (Large)", "5 Large Fries", "10 Chocolate Sundaes", "Ketchup", "7 Cheeseburgers"], "Mercury Drug": ["4 tablets of Paracetamol"]}
 
 # Main menu function that asks what you want to do
 def main_menu(main_menu_input):
+    global longest_key, longest_value
     if main_menu_input == "exit": 
         return main_menu_input    
 
     elif main_menu_input == "display":  
         print("")
-        pprint.pprint(dict_main)
+
+        # Gets the length of the longest key and value/sublist(value) in the dictionary
+        for j in dict_main.keys(): 
+            if len(j) > longest_key:
+                longest_key = len(j)
+        for i in dict_main.keys():
+            for c in dict_main[i]:
+                if len(str(c)) > longest_value:
+                    longest_value = len(str(c))
+        
+        # Prints out the heading and subheading.
+        todo_longest_value = int((longest_value - len("[TODO]"))/2)
+        print("PLACE-LISTER".center(longest_key + longest_value + display_seperator, '-'))
+        print("[Places]".center(longest_key), end = "")
+        print( "[TODO]".rjust(display_seperator + len("[TODO]") + todo_longest_value))
+
+        # Prints out the keys and values from the dictionary.
+        for a in dict_main.keys():
+            print(a.ljust(longest_key), end = "")
+            for b in dict_main[a]:
+                if b == dict_main[a][0]:
+                    print(str(b).rjust(len(str(b)) + display_seperator)) #
+                else:
+                    print(str(b).rjust(longest_key + len(str(b)) + display_seperator))
+            print("")
+        print("-" * (longest_key + longest_value + display_seperator))
 
     elif main_menu_input == "addexisting": 
         addexisting_place = input("What is the name of the place you're adding to?: ")
@@ -70,7 +103,7 @@ def main_menu(main_menu_input):
                 if addthings_todo != "":
                     dict_main[addthings_place].append(addthings_todo)
             else:
-                dict_main[addthings_place] = []    
+                dict_main[addthings_place] = [addthings_todo]    
             print("Successfully created and added.")
         else:
             print("You didn't enter a name.")
