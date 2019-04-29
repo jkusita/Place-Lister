@@ -14,8 +14,6 @@
 
 # What happens the user wants to input more than one todo's? (Think of a way)
 # I think dictionary displays values in alphabetical order, no matter the time/precedence you added it to the dictionary. Find a way to disable this and display it in order from oldest to the most recently added.. 
-# When you choose addtodo option, you should be able to have the choice to exit if you don't wan tot add a new one or existing. ####
-
 
 # Make an option to display the current places or lists if they want/put an input when deleting places and/or todos so they can see what exists if they forget the things they want to delete.
 #Find a way to save list because it discards the list after the program terminates.
@@ -45,9 +43,12 @@ dict_main = {"Mcdonalds": ["2 Coke Floats (Large)", "5 Large Fries", "10 Chocola
 # Main menu function that asks what you want to do
 def main_menu(main_menu_input):
     global longest_key, longest_value
-    if main_menu_input == "exit": 
-        return main_menu_input    
 
+    # If the user enters exit.
+    if main_menu_input == "exit": 
+        return main_menu_input   
+
+    # If the user enters display.
     elif main_menu_input == "display":  
         print("")
 
@@ -77,6 +78,7 @@ def main_menu(main_menu_input):
             print("")
         print("-" * (longest_key + longest_value + display_seperator))
 
+    # If the user enters addexisting.
     elif main_menu_input == "addexisting": 
         addexisting_place = input("What is the name of the place you're adding to?: ")
         if addexisting_place not in dict_main: 
@@ -86,6 +88,7 @@ def main_menu(main_menu_input):
             dict_main[addexisting_place].append(addexisting_todo) 
             print("Successfully added")
 
+    # If the user enters newplaceandtodo
     elif main_menu_input == "newplaceandtodo": 
         addthings_place = input("What is the name of the new place you're creating?: ")
         if addthings_place == "":
@@ -100,6 +103,7 @@ def main_menu(main_menu_input):
                     dict_main[addthings_place] = [addthings_todo]    
                 print("Successfully created and added.")
 
+    # If the user enters del.
     elif main_menu_input == "del": 
         del_answer = input("What do you want to del (place or todo)?: ")
         if del_answer == "place":
@@ -129,6 +133,7 @@ def main_menu(main_menu_input):
                     print("That place doesn't exist.")
                 break
 
+    # If the user enters ask.
     elif main_menu_input == "ask":
         answer = input("Where are you going?: ")
         if answer in dict_main:
@@ -138,6 +143,7 @@ def main_menu(main_menu_input):
         else:
             print("That place isn't listed.")
 
+    # If the user enters nothing.
     elif main_menu_input == "":
         print("Please enter something.")
 
