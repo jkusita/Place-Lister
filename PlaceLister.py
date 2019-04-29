@@ -27,17 +27,16 @@
 # Find out new names for the input choices xD!
 # Find out a way to not put that extra space between the list and the line in display.
 
-
+# Find a way to save your current settings to a file (Currently still learning how in Automate).
 
 import pprint
 
-# Still implementing variables
 longest_key = 0
 longest_value = 0
 display_seperator = 3
 todo_longest_value = 0
 
-
+# You can remove this dictionary later once you learn and implement the openfile from Automate.
 dict_main = {"Mcdonalds": ["2 Coke Floats (Large)", "5 Large Fries", "10 Chocolate Sundaes", "Ketchup", "7 Cheeseburgers"], "Mercury Drug": ["4 tablets of Paracetamol"]}
 
 # Main menu function that asks what you want to do
